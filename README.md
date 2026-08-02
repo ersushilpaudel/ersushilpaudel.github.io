@@ -1,9 +1,9 @@
-# sushilpaudelphd.github.io
+# ersushilpaudel.github.io
 
 Personal site — Sushil Paudel, PhD student in Electrical Engineering,
 Georgia Southern University.
 
-Live at <https://sushilpaudelphd.github.io/>
+Live at <https://ersushilpaudel.github.io/>
 
 Static HTML/CSS/JS. No build step, no framework, no dependencies, no third-party
 requests at runtime.
@@ -35,9 +35,14 @@ git push
 GitHub Pages rebuilds automatically; the change is live in a minute or two.
 
 Pages settings live at
-<https://github.com/sushilpaudelphd/sushilpaudelphd.github.io/settings/pages> —
+<https://github.com/ersushilpaudel/ersushilpaudel.github.io/settings/pages> —
 Source = *Deploy from a branch*, Branch = `main`, folder = `/ (root)`, and
 **Enforce HTTPS** ticked.
+
+Note: a user Pages site is always `<username>.github.io`, so the repository
+name must track the account name. Renaming the account without renaming this
+repo takes the site offline — GitHub redirects renamed *repositories* but never
+Pages URLs.
 
 ### Authenticating the push
 
