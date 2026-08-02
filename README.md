@@ -16,30 +16,25 @@ assets/main.js      theme toggle, scroll spy, reveal-on-scroll, portrait fallbac
 assets/photo.jpg    hero portrait
 assets/favicon.svg  tab icon
 assets/flag-*.svg   Nepal (constitutional construction) and US (EO 10834) flags
-assets/peak-*.jpg   Annapurna, Machhapuchhre, Everest
-assets/campus-*.jpg Georgia Southern
+assets/peak-everest.jpg  faded backdrop behind the journey band
 ```
 
-## Image licences
+## Image licence
 
-The four photographs come from Wikimedia Commons and are **not** public domain —
-three carry share-alike terms and all four require attribution. The credit line
-under the photo strip in `index.html` is a licence condition, not decoration.
-Do not delete it, and keep the author names and licence links intact if the
-layout changes.
+`peak-everest.jpg` comes from Wikimedia Commons and is **not** public domain.
+It is CC BY-SA 2.0 by shrimpo1967, edited by Papa Lima Whiskey 2.
 
-| File | Author | Licence |
-|---|---|---|
-| `peak-annapurna.jpg` | Vyacheslav Argenberg | CC BY 4.0 |
-| `peak-machhapuchhre.jpg` | Bijay Chaurasia | CC BY-SA 4.0 |
-| `peak-everest.jpg` | shrimpo1967, ed. Papa Lima Whiskey 2 | CC BY-SA 2.0 |
-| `campus-georgiasouthern.jpg` | Richardelainechambers | CC BY-SA 3.0 |
+Attribution is a **condition of the licence**, and it applies just as much to a
+faded background as to a full-size photo — fading an image does not waive the
+credit. The line in the footer of `index.html` satisfies it. Do not delete it,
+and keep the author names and licence link intact if the layout changes.
 
-Share-alike binds derivative works of the *images*, not the site that displays
-them, so nothing here obliges you to license your own code. Swapping in a
-different photo means updating the credit line to match.
+Share-alike binds derivative works of the *image*, not the site that displays
+it, so nothing here obliges you to license your own code. Swapping in a
+different photo means updating that footer line to match — or removing it
+entirely if you replace it with a photo you took yourself.
 
-They are served from `assets/` rather than hotlinked from Commons — hotlinking
+It is served from `assets/` rather than hotlinked from Commons — hotlinking
 would break the CSP and leans on someone else's bandwidth.
 
 ## Preview locally
