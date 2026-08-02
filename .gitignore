@@ -1,0 +1,18 @@
+# Source documents stay local — anything committed here becomes publicly
+# downloadable once GitHub Pages is enabled. The CV served by the site is the
+# deliberate copy at assets/Sushil_Paudel_CV.pdf.
+/*.pdf
+/*.docx
+/*.jpg
+/*.JPG
+/*.jpeg
+/*.png
+
+# Local tooling settings
+.claude/settings.local.json
+
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
