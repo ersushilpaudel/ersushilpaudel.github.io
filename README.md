@@ -54,16 +54,25 @@ database, no user input. What's left is *what the page discloses*, *what it
 pulls in from elsewhere*, and *what an attacker could inject into a visitor's
 browser*. All three are closed down:
 
-**No third-party requests.** Fonts are OS-native (Georgia / system-ui) rather
-than Google Fonts, and there are no CDNs, analytics or trackers. Nothing about a
-visitor leaves their machine. This also removes every supply-chain path — a
-compromised CDN cannot inject script into a page that loads no CDN.
+**One third-party request, by choice.** Fonts are OS-native (Georgia /
+system-ui) rather than Google Fonts, and there are no CDNs, analytics or
+trackers. The single exception is the footer visit counter, which calls
+`api.counterapi.dev` to get a global total — a static host keeps no state, so
+there is no other way to have one. **Every visitor's IP reaches that service.**
+That is the cost of the number in the footer; delete the counter block in
+`assets/main.js` and the `connect-src` line in the CSP to go back to zero
+external contact.
+
+The counter is public and unauthenticated — anyone who finds the endpoint can
+inflate it. Fine for a vanity figure, unsuitable for anything that matters.
 
 **Strict Content-Security-Policy** (`index.html`, `<head>`). Starts at
 `default-src 'none'` and re-grants only same-origin script, style, image and
-font. There is no `'unsafe-inline'`: the theme script and the portrait fallback
-live in `.js` files precisely so inline execution can stay banned. If anything
-ever manages to inject a `<script>` into this page, the browser refuses to run it.
+font, plus `connect-src` to that one counter host. There is no `'unsafe-inline'`:
+the theme script and the portrait fallback live in `.js` files precisely so
+inline execution can stay banned. If anything ever manages to inject a `<script>`
+into this page, the browser refuses to run it. Note the counter host is allowed
+for `connect-src` only — it can return JSON, never execute code on the page.
 
 **`base-uri 'none'`** stops a `<base>` tag from being injected to re-point every
 relative URL, and **`frame-ancestors 'none'`** blocks clickjacking via iframe.

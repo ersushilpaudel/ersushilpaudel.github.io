@@ -96,29 +96,25 @@
   document.getElementById("year").textContent = new Date().getFullYear();
 
   /* ---------- visit count ----------
-     Deliberately local-only. A static host has no backend, so a global total
-     would mean handing every visitor's IP to a third-party counter service;
-     this counts the reader's own return visits instead and says exactly that.
-     If storage is unavailable (private mode, blocked cookies) the line stays
-     hidden rather than showing a wrong number. */
+     Global total, so it needs a counter service — a static host cannot keep
+     state. api.counterapi.dev is the only external origin the CSP allows, and
+     only for connect-src, so it can return a number but never run code here.
+     The count is public and unauthenticated: anyone who finds the endpoint can
+     inflate it, which is acceptable for a vanity figure and would not be for
+     anything load-bearing. On any failure the line stays hidden rather than
+     showing a stale or wrong number. */
   var visits = document.getElementById("visits");
+  var COUNTER = "https://api.counterapi.dev/v1/sushilpaudelphd/site-visits/up";
 
-  var ordinal = function (n) {
-    var rem100 = n % 100;
-    if (rem100 >= 11 && rem100 <= 13) return n + "th";
-    switch (n % 10) {
-      case 1:  return n + "st";
-      case 2:  return n + "nd";
-      case 3:  return n + "rd";
-      default: return n + "th";
-    }
-  };
-
-  try {
-    var n = parseInt(localStorage.getItem("visits"), 10);
-    n = (isFinite(n) && n > 0 ? n : 0) + 1;
-    localStorage.setItem("visits", String(n));
-    visits.textContent = n === 1 ? "Your first visit" : "Your " + ordinal(n) + " visit";
-    visits.hidden = false;
-  } catch (e) { /* leave hidden */ }
+  if (window.fetch) {
+    fetch(COUNTER, { referrerPolicy: "no-referrer" })
+      .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+      .then(function (data) {
+        if (!data || typeof data.count !== "number") return;
+        visits.textContent =
+          data.count.toLocaleString() + (data.count === 1 ? " visit" : " visits");
+        visits.hidden = false;
+      })
+      .catch(function () { /* counter unavailable — leave hidden */ });
+  }
 })();

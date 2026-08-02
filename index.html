@@ -4,15 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Everything is served from this origin: no CDNs, no external fonts, no
-     analytics, no inline script or style. That lets the policy below stay
-     strict, which is the single most effective hardening a static site has. -->
+<!-- Every asset is served from this origin: no CDNs, no external fonts, no
+     inline script or style. The one exception is connect-src, which allows the
+     footer visit counter to reach api.counterapi.dev and nothing else — that
+     host can return JSON but can never execute script here. -->
 <meta http-equiv="Content-Security-Policy" content="
   default-src 'none';
   script-src 'self';
   style-src 'self';
   img-src 'self' data:;
   font-src 'self';
+  connect-src https://api.counterapi.dev;
   form-action 'none';
   base-uri 'none';
   frame-ancestors 'none';
