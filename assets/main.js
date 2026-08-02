@@ -104,7 +104,7 @@
      anything load-bearing. On any failure the line stays hidden rather than
      showing a stale or wrong number. */
   var visits = document.getElementById("visits");
-  var COUNTER = "https://api.counterapi.dev/v1/sushilpaudelphd/site-visits/up";
+  var COUNTER = "https://api.counterapi.dev/v1/ersushilpaudel/site-visits/up";
 
   if (window.fetch) {
     fetch(COUNTER, { referrerPolicy: "no-referrer" })
