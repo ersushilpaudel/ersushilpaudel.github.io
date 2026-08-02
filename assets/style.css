@@ -176,21 +176,6 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
 
-/* Brand marks are solid glyphs, not line icons — they need fill, no stroke,
-   and their own colours rather than currentColor. */
-.brand, .btn .brand { fill: currentColor; stroke: none; width: 15px; height: 15px; }
-.brand-li { color: #0A66C2; }
-.brand-gs { color: #4285F4; }
-:root[data-theme="dark"] .brand-li { color: #4d9fe8; }
-:root[data-theme="dark"] .brand-gs { color: #7aa8f7; }
-/* The primary button sits on a filled accent, so a brand colour would clash. */
-.btn-primary .brand { color: inherit; }
-
-.brand-inline {
-  display: inline-block; vertical-align: -2px; margin-right: 5px;
-  width: 13px; height: 13px;
-}
-
 .btn-primary {
   background: var(--accent); border-color: var(--accent); color: var(--accent-in);
 }
