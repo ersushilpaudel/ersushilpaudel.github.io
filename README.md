@@ -15,7 +15,32 @@ assets/theme.js     sets the colour theme before first paint
 assets/main.js      theme toggle, scroll spy, reveal-on-scroll, portrait fallback
 assets/photo.jpg    hero portrait
 assets/favicon.svg  tab icon
+assets/flag-*.svg   Nepal (constitutional construction) and US (EO 10834) flags
+assets/peak-*.jpg   Annapurna, Machhapuchhre, Everest
+assets/campus-*.jpg Georgia Southern
 ```
+
+## Image licences
+
+The four photographs come from Wikimedia Commons and are **not** public domain —
+three carry share-alike terms and all four require attribution. The credit line
+under the photo strip in `index.html` is a licence condition, not decoration.
+Do not delete it, and keep the author names and licence links intact if the
+layout changes.
+
+| File | Author | Licence |
+|---|---|---|
+| `peak-annapurna.jpg` | Vyacheslav Argenberg | CC BY 4.0 |
+| `peak-machhapuchhre.jpg` | Bijay Chaurasia | CC BY-SA 4.0 |
+| `peak-everest.jpg` | shrimpo1967, ed. Papa Lima Whiskey 2 | CC BY-SA 2.0 |
+| `campus-georgiasouthern.jpg` | Richardelainechambers | CC BY-SA 3.0 |
+
+Share-alike binds derivative works of the *images*, not the site that displays
+them, so nothing here obliges you to license your own code. Swapping in a
+different photo means updating the credit line to match.
+
+They are served from `assets/` rather than hotlinked from Commons — hotlinking
+would break the CSP and leans on someone else's bandwidth.
 
 ## Preview locally
 
