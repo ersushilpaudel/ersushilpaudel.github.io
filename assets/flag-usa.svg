@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1235 650" width="1235" height="650">
+<title>Flag of the United States</title>
+<!-- Executive Order 10834 proportions: hoist 650, fly 1235 (1:1.9).
+     13 stripes of 50; union 494 x 350; 50 stars on an 11 x 9 grid using
+     alternate positions - 6 stars on odd rows, 5 on even. -->
+<defs>
+  <!-- Five-pointed star, outer radius 20, inner radius 20*sin18/sin126. -->
+  <path id="s" d="M0,-20 4.4903,-6.1803 19.0211,-6.1803 7.2654,2.3607 11.7557,16.1803 0,7.6393 -11.7557,16.1803 -7.2654,2.3607 -19.0211,-6.1803 -4.4903,-6.1803Z"/>
+  <g id="r6">
+    <use href="#s" x="41.167"/><use href="#s" x="123.5"/><use href="#s" x="205.833"/>
+    <use href="#s" x="288.167"/><use href="#s" x="370.5"/><use href="#s" x="452.833"/>
+  </g>
+  <g id="r5">
+    <use href="#s" x="82.333"/><use href="#s" x="164.667"/><use href="#s" x="247"/>
+    <use href="#s" x="329.333"/><use href="#s" x="411.667"/>
+  </g>
+</defs>
+
+<rect width="1235" height="650" fill="#fff"/>
+<g fill="#B31942">
+  <rect y="0"   width="1235" height="50"/>
+  <rect y="100" width="1235" height="50"/>
+  <rect y="200" width="1235" height="50"/>
+  <rect y="300" width="1235" height="50"/>
+  <rect y="400" width="1235" height="50"/>
+  <rect y="500" width="1235" height="50"/>
+  <rect y="600" width="1235" height="50"/>
+</g>
+<rect width="494" height="350" fill="#0A3161"/>
+<g fill="#fff">
+  <use href="#r6" y="35"/><use href="#r5" y="70"/><use href="#r6" y="105"/>
+  <use href="#r5" y="140"/><use href="#r6" y="175"/><use href="#r5" y="210"/>
+  <use href="#r6" y="245"/><use href="#r5" y="280"/><use href="#r6" y="315"/>
+</g>
+</svg>

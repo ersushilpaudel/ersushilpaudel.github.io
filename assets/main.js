@@ -94,4 +94,31 @@
 
   /* ---------- footer year ---------- */
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ---------- visit count ----------
+     Deliberately local-only. A static host has no backend, so a global total
+     would mean handing every visitor's IP to a third-party counter service;
+     this counts the reader's own return visits instead and says exactly that.
+     If storage is unavailable (private mode, blocked cookies) the line stays
+     hidden rather than showing a wrong number. */
+  var visits = document.getElementById("visits");
+
+  var ordinal = function (n) {
+    var rem100 = n % 100;
+    if (rem100 >= 11 && rem100 <= 13) return n + "th";
+    switch (n % 10) {
+      case 1:  return n + "st";
+      case 2:  return n + "nd";
+      case 3:  return n + "rd";
+      default: return n + "th";
+    }
+  };
+
+  try {
+    var n = parseInt(localStorage.getItem("visits"), 10);
+    n = (isFinite(n) && n > 0 ? n : 0) + 1;
+    localStorage.setItem("visits", String(n));
+    visits.textContent = n === 1 ? "Your first visit" : "Your " + ordinal(n) + " visit";
+    visits.hidden = false;
+  } catch (e) { /* leave hidden */ }
 })();
