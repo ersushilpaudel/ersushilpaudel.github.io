@@ -1,6 +1,9 @@
-# Personal site — Sushil Paudel
+# sushilpaudelphd.github.io
 
-PhD student in Electrical Engineering, Georgia Southern University.
+Personal site — Sushil Paudel, PhD student in Electrical Engineering,
+Georgia Southern University.
+
+Live at <https://sushilpaudelphd.github.io/>
 
 Static HTML/CSS/JS. No build step, no framework, no dependencies, no third-party
 requests at runtime.
@@ -19,25 +22,22 @@ assets/favicon.svg  tab icon
 Double-click `index.html`. All paths are relative, so it works straight off the
 filesystem.
 
-## Publish to GitHub Pages
+## Deploying an update
 
-For a site at `https://<username>.github.io`, the repository **must** be named
-`<username>.github.io` exactly.
+The remote is already configured. After editing:
 
 ```bash
-git init
-git add .
-git commit -m "Personal site"
-git branch -M main
-git remote add origin https://github.com/<username>/<username>.github.io.git
-git push -u origin main
+git add -A
+git commit -m "what changed"
+git push
 ```
 
-Then: repository → **Settings** → **Pages** → Source = *Deploy from a branch*,
-Branch = `main`, folder = `/ (root)`. Live in a minute or two.
+GitHub Pages rebuilds automatically; the change is live in a minute or two.
 
-Any other repo name works too — the site lands at
-`https://<username>.github.io/<repo>/` instead.
+Pages settings live at
+<https://github.com/sushilpaudelphd/sushilpaudelphd.github.io/settings/pages> —
+Source = *Deploy from a branch*, Branch = `main`, folder = `/ (root)`, and
+**Enforce HTTPS** ticked.
 
 ### Authenticating the push
 
