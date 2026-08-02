@@ -214,23 +214,32 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   position: relative; isolation: isolate;
   background: var(--alt);
   border-block: 1px solid var(--line);
-  padding: 52px 0 58px;
+  padding: 68px 0 74px;
   overflow: hidden;
 }
 
 /* Everest behind the band. Faded hard and desaturated so it reads as texture
    rather than a photograph, and masked at top and bottom so it dissolves into
    the surrounding sections instead of ending on a hard edge. */
+/* The photo is mostly snow and pale sky, so plain opacity over a near-white
+   band erases it. `multiply` drops the light areas out and keeps the dark
+   rock and shadow, which is what actually reads as mountain. Dark mode needs
+   `screen` for the same reason inverted. */
 .ranges {
   position: absolute; inset: 0; z-index: -1;
   pointer-events: none;
-  background: url("peak-everest.jpg") center 38% / cover no-repeat;
-  opacity: .17;
-  filter: saturate(.55) contrast(.95);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 72%, transparent);
-          mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 72%, transparent);
+  background: url("peak-everest.jpg") center 45% / cover no-repeat;
+  opacity: .40;
+  filter: saturate(.5) contrast(1.12);
+  mix-blend-mode: multiply;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 84%, transparent);
+          mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 84%, transparent);
 }
-:root[data-theme="dark"] .ranges { opacity: .20; filter: saturate(.5) brightness(.9); }
+:root[data-theme="dark"] .ranges {
+  opacity: .34;
+  filter: saturate(.45) brightness(.95) contrast(1.15);
+  mix-blend-mode: screen;
+}
 
 .journey-inner {
   display: flex; align-items: center; justify-content: center;
