@@ -218,31 +218,35 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   overflow: hidden;
 }
 
-/* Everest behind the band. Faded hard and desaturated so it reads as texture
-   rather than a photograph, and masked at top and bottom so it dissolves into
-   the surrounding sections instead of ending on a hard edge. */
-/* The photo is mostly snow and pale sky, so plain opacity over a near-white
-   band erases it. `multiply` drops the light areas out and keeps the dark
-   rock and shadow, which is what actually reads as mountain. Dark mode needs
-   `screen` for the same reason inverted. */
+/* Everest behind the band, close to its own colours and only lightly faded,
+   still masked at top and bottom so it dissolves into the surrounding sections
+   instead of ending on a hard edge. */
+/* Blending is what used to drain the colour: `multiply` kept only the dark
+   rock and shadow, and `screen` blew the photo out white in dark mode. Neither
+   can preserve the real blue sky and snow, so both themes now composite
+   normally and lean on opacity alone for the fade. */
 .ranges {
   position: absolute; inset: 0; z-index: -1;
   pointer-events: none;
-  /* The 3mm nudges the photo down from the 45% framing. A length added to a
-     percentage shifts the image itself, where changing the percentage alone
-     would move it the other way — under `cover` the image is taller than the
-     band, so a larger percentage pulls it up. */
-  background: url("peak-everest.jpg") center calc(45% + 3mm) / cover no-repeat;
-  opacity: .40;
-  filter: saturate(.5) contrast(1.12);
-  mix-blend-mode: multiply;
+  /* The summit sits about 26% down the photo. The band is a ~194px window onto
+     an image `cover` scales to ~772px tall, so the old 45% framed image-y
+     249-443 and cut the peak off some 46px above the band — the mountain was
+     there, but the top of it never was. 22% lands the summit around the middle
+     of the band, and because it is a percentage it stays framed as the
+     viewport width changes the scale. The 3mm keeps the requested nudge down. */
+  background: url("peak-everest.jpg") center calc(22% + 3mm) / cover no-repeat;
+  opacity: .8;
+  filter: saturate(1) contrast(1.02);
+  mix-blend-mode: normal;
   -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 84%, transparent);
           mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 84%, transparent);
 }
+/* Dark mode fades a little further and pulls the brightness down, so a sunlit
+   photograph does not glare out of a dark page. */
 :root[data-theme="dark"] .ranges {
-  opacity: .34;
-  filter: saturate(.45) brightness(.95) contrast(1.15);
-  mix-blend-mode: screen;
+  opacity: .62;
+  filter: saturate(1) brightness(.88) contrast(1.02);
+  mix-blend-mode: normal;
 }
 
 .journey-inner {
