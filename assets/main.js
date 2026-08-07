@@ -70,26 +70,45 @@
     .map(function (a) { return document.querySelector(a.getAttribute("href")); })
     .filter(Boolean);
 
-  if ("IntersectionObserver" in window && sections.length) {
-    var visible = new Set();
+  /* A single line just below the sticky nav decides the active section: the
+     last section whose top has crossed it wins. A band would be ambiguous —
+     clicking a link parks that section's top at scroll-padding-top (84px), so
+     the previous section still occupies the sliver above it and would take the
+     highlight. The line sits a few px below 84 so the clicked section lands on
+     the winning side of it even after sub-pixel rounding. */
+  var LINE = 92;
 
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) visible.add(entry.target.id);
-        else visible.delete(entry.target.id);
-      });
+  if (sections.length) {
+    var current = null;
 
-      /* Highlight the topmost section currently in the band. */
-      var current = null;
-      for (var i = 0; i < sections.length; i++) {
-        if (visible.has(sections[i].id)) { current = sections[i].id; break; }
+    var spy = function () {
+      var id = null;
+      var atBottom = window.innerHeight + window.scrollY >=
+                     document.documentElement.scrollHeight - 2;
+
+      if (atBottom) {
+        /* A short final section may never reach the line; claim it anyway. */
+        id = sections[sections.length - 1].id;
+      } else {
+        for (var i = 0; i < sections.length; i++) {
+          if (sections[i].getBoundingClientRect().top <= LINE) id = sections[i].id;
+        }
       }
-      links.forEach(function (a) {
-        a.classList.toggle("active", a.getAttribute("href") === "#" + current);
-      });
-    }, { rootMargin: "-64px 0px -60% 0px", threshold: 0 });
 
-    sections.forEach(function (s) { spy.observe(s); });
+      if (id === current) return;
+      current = id;
+      links.forEach(function (a) {
+        a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+      });
+    };
+
+    /* Called straight from the scroll event rather than batched into a
+       requestAnimationFrame: rAF is suspended while the tab is hidden, which
+       would leave the highlight frozen on whatever was last on screen. Six
+       reads and no writes on the common path is cheap enough to run inline. */
+    window.addEventListener("scroll", spy, { passive: true });
+    window.addEventListener("resize", spy);
+    spy();
   }
 
   /* ---------- footer year ---------- */
