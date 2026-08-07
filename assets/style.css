@@ -564,6 +564,34 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   .foot-inner { justify-content: flex-start; gap: 8px 16px; }
 }
 
+/* ──────────────────────── back to top ──────────────────────── */
+
+/* Hidden until the visitor is a screen or so down the page — on the hero it
+   would only point at what is already on screen. `visibility` rather than
+   opacity alone so it also leaves the tab order while it is invisible. */
+.totop {
+  position: fixed; z-index: 40;
+  right: clamp(16px, 3vw, 28px); bottom: clamp(16px, 3vw, 28px);
+  display: grid; place-items: center;
+  width: 44px; height: 44px;
+  border: 1px solid var(--line); border-radius: 50%;
+  background: var(--surface); color: var(--ink);
+  box-shadow: var(--shadow);
+  opacity: 0; visibility: hidden; transform: translateY(8px);
+  transition: opacity .25s, transform .25s, visibility .25s,
+              border-color .2s, color .2s;
+}
+.totop.show { opacity: 1; visibility: visible; transform: none; }
+.totop:hover, .totop:focus-visible {
+  text-decoration: none; color: var(--accent); border-color: var(--accent);
+}
+.totop:hover { transform: translateY(-2px); }
+.totop svg {
+  width: 17px; height: 17px;
+  fill: none; stroke: currentColor; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
 /* ───────────────────── reveal animation ───────────────────── */
 
 .reveal {

@@ -34,10 +34,21 @@
     if (!stored) root.setAttribute("data-theme", e.matches ? "dark" : "light");
   });
 
-  /* ---------- nav shadow on scroll ---------- */
-  var nav = document.getElementById("nav");
-  var onScroll = function () { nav.classList.toggle("stuck", window.scrollY > 8); };
+  /* ---------- nav shadow, and the back-to-top button ---------- */
+  /* Both are driven by scroll depth, so they share one listener rather than
+     each adding their own. The anchor works without any of this; the class
+     only decides when it is worth showing. */
+  var nav   = document.getElementById("nav");
+  var toTop = document.getElementById("totop");
+
+  var onScroll = function () {
+    var y = window.scrollY;
+    nav.classList.toggle("stuck", y > 8);
+    /* Roughly one screen down, so it never covers the hero it would return to. */
+    toTop.classList.toggle("show", y > window.innerHeight * 0.9);
+  };
   window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
   onScroll();
 
   /* ---------- reveal on enter ---------- */
