@@ -228,7 +228,11 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .ranges {
   position: absolute; inset: 0; z-index: -1;
   pointer-events: none;
-  background: url("peak-everest.jpg") center 45% / cover no-repeat;
+  /* The 3mm nudges the photo down from the 45% framing. A length added to a
+     percentage shifts the image itself, where changing the percentage alone
+     would move it the other way — under `cover` the image is taller than the
+     band, so a larger percentage pulls it up. */
+  background: url("peak-everest.jpg") center calc(45% + 3mm) / cover no-repeat;
   opacity: .40;
   filter: saturate(.5) contrast(1.12);
   mix-blend-mode: multiply;
