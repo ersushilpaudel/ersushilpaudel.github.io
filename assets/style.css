@@ -218,13 +218,12 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   overflow: hidden;
 }
 
-/* Everest behind the band, close to its own colours and only lightly faded,
-   still masked at top and bottom so it dissolves into the surrounding sections
-   instead of ending on a hard edge. */
-/* Blending is what used to drain the colour: `multiply` kept only the dark
-   rock and shadow, and `screen` blew the photo out white in dark mode. Neither
-   can preserve the real blue sky and snow, so both themes now composite
-   normally and lean on opacity alone for the fade. */
+/* Everest behind the band, shown exactly as photographed: full opacity, no
+   filter, no blend mode and no mask. Every one of those was a way of pushing
+   the picture back, and each cost it something — opacity greyed the sky, the
+   contrast tweak hardened the snow, and the top-and-bottom mask dissolved the
+   summit into the section above it. The photograph now carries its own colour
+   and its own edges; the band's borders frame it instead. */
 .ranges {
   position: absolute; inset: 0; z-index: -1;
   pointer-events: none;
@@ -235,18 +234,6 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
      of the band, and because it is a percentage it stays framed as the
      viewport width changes the scale. The 3mm keeps the requested nudge down. */
   background: url("peak-everest.jpg") center calc(22% + 3mm) / cover no-repeat;
-  opacity: .8;
-  filter: saturate(1) contrast(1.02);
-  mix-blend-mode: normal;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 84%, transparent);
-          mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 84%, transparent);
-}
-/* Dark mode fades a little further and pulls the brightness down, so a sunlit
-   photograph does not glare out of a dark page. */
-:root[data-theme="dark"] .ranges {
-  opacity: .62;
-  filter: saturate(1) brightness(.88) contrast(1.02);
-  mix-blend-mode: normal;
 }
 
 .journey-inner {
@@ -276,10 +263,18 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* A halo in the page's own background colour separates the glyphs from
    whatever happens to be behind them — sky, snow or rock — which keeps the
-   text readable without fading the photograph back down. */
-.j-text strong, .j-text span { text-shadow: 0 1px 2px rgba(255,255,255,.65); }
+   text readable without fading the photograph back down. Two stacked shadows,
+   not one: a tight opaque ring does the separating and a wider soft one sits
+   the text on the picture. Now that nothing dims the photo, dark mode is the
+   hard case — pale text over sunlit snow — so its halo is the heavier of the
+   two. */
+.j-text strong, .j-text span {
+  text-shadow: 0 0 3px rgba(255,255,255,.92), 0 1px 6px rgba(255,255,255,.75);
+}
 :root[data-theme="dark"] .j-text strong,
-:root[data-theme="dark"] .j-text span { text-shadow: 0 1px 3px rgba(0,0,0,.7); }
+:root[data-theme="dark"] .j-text span {
+  text-shadow: 0 0 3px rgba(0,0,0,.95), 0 1px 7px rgba(0,0,0,.8);
+}
 
 .j-arc { width: clamp(70px, 12vw, 160px); color: var(--accent); opacity: .55; }
 .j-arc svg { width: 100%; height: 46px; display: block; }
