@@ -1,6 +1,6 @@
 # ersushilpaudel.github.io
 
-Personal site — Sushil Paudel, PhD student in Electrical Engineering,
+Personal site — Sushil Paudel, PhD candidate in Electrical and Computer Engineering,
 Georgia Southern University.
 
 Live at <https://ersushilpaudel.github.io/>
@@ -13,7 +13,7 @@ index.html          the whole page
 assets/style.css    design tokens + layout (light & dark)
 assets/theme.js     sets the colour theme before first paint
 assets/main.js      theme toggle, scroll spy, reveal-on-scroll, portrait fallback
-assets/photo.jpg    hero portrait
+assets/photo.jpg    hero portrait (640×800, head to waist, metadata stripped)
 assets/favicon.svg  tab icon
 assets/flag-*.svg   Nepal (constitutional construction) and US (EO 10834) flags
 assets/peak-everest.jpg  faded backdrop behind the journey band
@@ -135,6 +135,5 @@ Cloudflare in front or move to Netlify/Vercel, which support a headers file.
 
 ## Things worth adding later
 
-- ORCID / ResearchGate links alongside Google Scholar
-- DOI links on the publications once available
+- A ResearchGate link alongside Google Scholar and ORCID
 - A separate `publications.html` if the list outgrows the section

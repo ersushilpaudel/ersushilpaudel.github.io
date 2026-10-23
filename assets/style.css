@@ -181,14 +181,15 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .btn-primary:hover { filter: brightness(1.07); }
 
-/* portrait */
+/* portrait — a 4:5 head-to-waist crop, so the frame is an upright rounded
+   rectangle rather than a circle, which would cut the shoulders away. */
 
 .hero-photo { justify-self: end; }
 
 .photo-frame {
   position: relative;
-  width: clamp(160px, 24vw, 228px); aspect-ratio: 1;
-  border-radius: 50%;
+  width: clamp(176px, 25vw, 256px); aspect-ratio: 4 / 5;
+  border-radius: 18px;
   border: 1px solid var(--line);
   background: var(--accent-bg);
   overflow: hidden;
@@ -369,6 +370,18 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .tag-review { background: var(--warn-bg); color: var(--warn-ink); }
 
+/* Groups follow the CV: under review, published, conference, in preparation.
+   Each group is its own list, and its items carry the CV's own labels (J1, C1,
+   P1…) so the site and the PDF cite the same paper the same way. */
+.pub-group {
+  margin: 34px 0 2px;
+  font-size: .775rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted);
+}
+.pub-group:first-of-type { margin-top: 0; }
+.pub[data-ref]::before { content: attr(data-ref); }
+.pub-venue a { font-style: normal; }
+
 /* ───────────────────────── timeline ───────────────────────── */
 
 .timeline { display: grid; gap: 4px; }
@@ -431,10 +444,6 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   transition: border-color .18s, color .18s;
 }
 .chips li:hover { border-color: var(--accent); color: var(--ink); }
-.chip-soft span {
-  margin-left: 6px; font-size: .715rem; color: var(--muted);
-  font-style: italic; font-weight: 400;
-}
 
 /* ───────────────────────── reviews ───────────────────────── */
 
@@ -549,6 +558,9 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .cv-note { margin: 30px 0 0; font-size: .84rem; color: var(--muted); font-style: italic; }
 
 .pub-more { margin: 26px 0 0; font-size: .9rem; color: var(--muted); }
+
+.members { margin: 26px 0 0; font-size: .92rem; color: var(--ink-soft); }
+.members strong { margin-right: 8px; color: var(--ink); font-weight: 600; }
 
 /* ───────────────────────── footer ───────────────────────── */
 
