@@ -16,3 +16,7 @@ Thumbs.db
 desktop.ini
 .DS_Store
 .vscode/
+
+# Admin key for the visit counter (abacus.jasoncameron.dev) — lets you set or
+# reset the count. Anyone holding it can change the number, so it never ships.
+/counter-admin-key.txt

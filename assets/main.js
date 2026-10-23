@@ -127,22 +127,25 @@
 
   /* ---------- visit count ----------
      Global total, so it needs a counter service — a static host cannot keep
-     state. api.counterapi.dev is the only external origin the CSP allows, and
-     only for connect-src, so it can return a number but never run code here.
+     state. abacus.jasoncameron.dev is the only external origin the CSP allows,
+     and only for connect-src, so it can return a number but never run code
+     here. (It replaced api.counterapi.dev, which retired the keyless v1 API.)
+     /hit both increments and returns the total, as { "value": n }. A counter
+     untouched for six months expires, which a visited site never reaches.
      The count is public and unauthenticated: anyone who finds the endpoint can
      inflate it, which is acceptable for a vanity figure and would not be for
      anything load-bearing. On any failure the line stays hidden rather than
      showing a stale or wrong number. */
   var visits = document.getElementById("visits");
-  var COUNTER = "https://api.counterapi.dev/v1/ersushilpaudel/site-visits/up";
+  var COUNTER = "https://abacus.jasoncameron.dev/hit/ersushilpaudel/site-visits";
 
   if (window.fetch) {
     fetch(COUNTER, { referrerPolicy: "no-referrer" })
       .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
       .then(function (data) {
-        if (!data || typeof data.count !== "number") return;
+        if (!data || typeof data.value !== "number") return;
         visits.textContent =
-          data.count.toLocaleString() + (data.count === 1 ? " visit" : " visits");
+          data.value.toLocaleString() + (data.value === 1 ? " visit" : " visits");
         visits.hidden = false;
       })
       .catch(function () { /* counter unavailable — leave hidden */ });

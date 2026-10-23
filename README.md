@@ -82,7 +82,7 @@ browser*. All three are closed down:
 **One third-party request, by choice.** Fonts are OS-native (Georgia /
 system-ui) rather than Google Fonts, and there are no CDNs, analytics or
 trackers. The single exception is the footer visit counter, which calls
-`api.counterapi.dev` to get a global total — a static host keeps no state, so
+`abacus.jasoncameron.dev` to get a global total — a static host keeps no state, so
 there is no other way to have one. **Every visitor's IP reaches that service.**
 That is the cost of the number in the footer; delete the counter block in
 `assets/main.js` and the `connect-src` line in the CSP to go back to zero
@@ -90,6 +90,16 @@ external contact.
 
 The counter is public and unauthenticated — anyone who finds the endpoint can
 inflate it. Fine for a vanity figure, unsuitable for anything that matters.
+
+It used to live on `api.counterapi.dev`, until that service retired its keyless
+v1 API (every request now returns 410 Gone) and took the old total with it.
+Abacus is a free, keyless replacement run by one developer, so it could go the
+same way; if the footer line ever vanishes, check the endpoint first. A counter
+expires after six months without a hit, which a visited site never reaches.
+
+The admin key printed when the counter was created lets you set or reset the
+number. It sits in `counter-admin-key.txt` beside this README, is gitignored,
+and must stay that way — anyone holding it can rewrite the count.
 
 **Strict Content-Security-Policy** (`index.html`, `<head>`). Starts at
 `default-src 'none'` and re-grants only same-origin script, style, image and
