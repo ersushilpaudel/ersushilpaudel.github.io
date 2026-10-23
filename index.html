@@ -33,9 +33,13 @@
 <meta property="og:image" content="https://ersushilpaudel.github.io/assets/photo.jpg">
 <meta name="twitter:card" content="summary">
 
+<!-- GitHub Pages lets browsers reuse assets for 10 minutes, so a fresh page
+     can run last version's cached main.js — which once left the visit counter
+     calling a host the new CSP blocks. The ?v= ties each asset to this page:
+     bump it whenever style.css, theme.js or main.js changes. -->
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css">
-<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/style.css?v=2026-10-23">
+<script src="assets/theme.js?v=2026-10-23"></script>
 </head>
 <body>
 
@@ -556,6 +560,6 @@
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </a>
 
-<script src="assets/main.js"></script>
+<script src="assets/main.js?v=2026-10-23"></script>
 </body>
 </html>
