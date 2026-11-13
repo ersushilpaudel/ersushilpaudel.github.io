@@ -15,15 +15,17 @@
   --accent-bg: #eaeeff;
   --warn-bg:   #fdf1dc;
   --warn-ink:  #8a5a10;
+  --ok-bg:     #e3f4e8;
+  --ok-ink:    #1e6b3a;
   --shadow:    0 1px 2px rgba(20,24,35,.05), 0 8px 24px -12px rgba(20,24,35,.14);
 
-  /* Deliberately no webfont: every family below already ships with the OS.
-     That removes the last third-party origin, so the CSP can stay at
-     default-src 'none' and no request ever leaves the visitor's machine. */
-  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino,
-           "Times New Roman", serif;
-  --sans:  system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-           "Helvetica Neue", Arial, sans-serif;
+  /* The whole site is set in Times New Roman, by request — headings, body,
+     buttons and labels alike, so --sans is the same face as --serif. It is
+     not a webfont (Times New Roman is licensed, and font-src only allows this
+     origin): Windows, macOS and iOS ship it, and Android/Linux fall back to a
+     metric-compatible clone (Liberation Serif, Tinos) or their default serif. */
+  --serif: "Times New Roman", Times, "Liberation Serif", Tinos, serif;
+  --sans:  var(--serif);
 
   --wrap: 1080px;
   --r: 12px;
@@ -42,6 +44,8 @@
   --accent-bg: #1a2033;
   --warn-bg:   #2e2517;
   --warn-ink:  #e5b869;
+  --ok-bg:     #172a1e;
+  --ok-ink:    #7fd39a;
   --shadow:    0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
 }
 
@@ -158,6 +162,20 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   font-size: 1.045rem; color: var(--ink-soft);
 }
 .lede strong { color: var(--ink); font-weight: 600; }
+
+/* Job-search status, tucked between the lede and the buttons. The green dot
+   reuses the "accepted" tag tokens so the two read as the same family. */
+.seeking {
+  margin: -12px 0 26px; max-width: 56ch;
+  font-size: .97rem; color: var(--ink-soft);
+}
+.seeking::before {
+  content: ""; display: inline-block;
+  width: 8px; height: 8px; margin-right: 10px; border-radius: 50%;
+  background: var(--ok-ink); box-shadow: 0 0 0 3px var(--ok-bg);
+  vertical-align: 1px;
+}
+.seeking strong { color: var(--ink); font-weight: 600; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 11px; }
 .actions-center { justify-content: center; }
@@ -369,8 +387,9 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   vertical-align: 1px;
 }
 .tag-review { background: var(--warn-bg); color: var(--warn-ink); }
+.tag-accepted { background: var(--ok-bg); color: var(--ok-ink); }
 
-/* Groups follow the CV: under review, published, conference, in preparation.
+/* Groups follow the CV: accepted, under review, published, conference, in preparation.
    Each group is its own list, and its items carry the CV's own labels (J1, C1,
    P1…) so the site and the PDF cite the same paper the same way. */
 .pub-group {
