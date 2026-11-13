@@ -27,7 +27,7 @@
   --serif: "Times New Roman", Times, "Liberation Serif", Tinos, serif;
   --sans:  var(--serif);
 
-  --wrap: 1080px;
+  --wrap: 1296px;
   --r: 12px;
 }
 
@@ -51,14 +51,16 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+/* Zoomed 20% by request: the root size scales every rem font at once, px
+   element sizes were raised x1.2 by hand, and spacing was cut to x0.8. */
+html { font-size: 120%; scroll-behavior: smooth; scroll-padding-top: 84px; }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 16.5px;
+  font-size: 1.03rem;
   line-height: 1.68;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -69,7 +71,7 @@ img { max-width: 100%; display: block; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: 24px; }
+.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: 19px; }
 
 .skip {
   position: absolute; left: -9999px; top: 0; z-index: 100;
@@ -115,50 +117,50 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .theme-btn {
   display: grid; place-items: center;
-  width: 36px; height: 36px; flex: none;
+  width: 43px; height: 43px; flex: none;
   border: 1px solid var(--line); border-radius: 9px;
   background: var(--surface); color: var(--ink-soft);
   cursor: pointer; transition: border-color .2s, color .2s;
 }
 .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
-.theme-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.theme-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .theme-btn .i-moon { display: none; }
 :root[data-theme="dark"] .theme-btn .i-sun  { display: none; }
 :root[data-theme="dark"] .theme-btn .i-moon { display: block; }
 
 /* ─────────────────────────── hero ─────────────────────────── */
 
-.hero { padding: clamp(52px, 9vw, 104px) 0 clamp(48px, 8vw, 88px); }
+.hero { padding: clamp(42px, 7.2vw, 83px) 0 clamp(38px, 6.4vw, 70px); }
 
 .hero-inner {
   display: grid; grid-template-columns: 1fr auto;
-  gap: clamp(32px, 6vw, 72px); align-items: center;
+  gap: clamp(26px, 4.8vw, 58px); align-items: center;
 }
 
 .eyebrow {
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   font-size: .775rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
   color: var(--accent);
 }
 
 .hero h1 {
   font-family: var(--serif);
-  font-size: clamp(2.7rem, 7vw, 4.05rem);
+  font-size: clamp(2.7rem, 8.4vw, 4.05rem);
   font-weight: 500; line-height: 1.02; letter-spacing: -.028em;
-  margin: 0 0 14px;
+  margin: 0 0 11px;
 }
 
 .role {
   margin: 0 0 6px;
-  font-size: clamp(1rem, 2vw, 1.115rem);
+  font-size: clamp(1rem, 2.4vw, 1.115rem);
   color: var(--ink-soft); font-weight: 500;
 }
 
-.advisor { margin: 0 0 22px; font-size: .92rem; color: var(--muted); }
+.advisor { margin: 0 0 18px; font-size: .92rem; color: var(--muted); }
 .advisor strong { color: var(--ink-soft); font-weight: 600; }
 
 .lede {
-  margin: 0 0 30px; max-width: 56ch;
+  margin: 0 0 24px; max-width: 56ch;
   font-size: 1.045rem; color: var(--ink-soft);
 }
 .lede strong { color: var(--ink); font-weight: 600; }
@@ -166,23 +168,23 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 /* Job-search status, tucked between the lede and the buttons. The green dot
    reuses the "accepted" tag tokens so the two read as the same family. */
 .seeking {
-  margin: -12px 0 26px; max-width: 56ch;
+  margin: -10px 0 21px; max-width: 56ch;
   font-size: .97rem; color: var(--ink-soft);
 }
 .seeking::before {
   content: ""; display: inline-block;
-  width: 8px; height: 8px; margin-right: 10px; border-radius: 50%;
+  width: 10px; height: 10px; margin-right: 10px; border-radius: 50%;
   background: var(--ok-ink); box-shadow: 0 0 0 3px var(--ok-bg);
   vertical-align: 1px;
 }
 .seeking strong { color: var(--ink); font-weight: 600; }
 
-.actions { display: flex; flex-wrap: wrap; gap: 11px; }
+.actions { display: flex; flex-wrap: wrap; gap: 9px; }
 .actions-center { justify-content: center; }
 
 .btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 10px 17px;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 20px;
   border: 1px solid var(--line); border-radius: 9px;
   background: var(--surface); color: var(--ink);
   font-size: .9rem; font-weight: 500; font-family: var(--sans);
@@ -192,7 +194,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   text-decoration: none; transform: translateY(-1.5px);
   border-color: var(--accent); box-shadow: var(--shadow);
 }
-.btn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.btn svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
 
 .btn-primary {
   background: var(--accent); border-color: var(--accent); color: var(--accent-in);
@@ -206,7 +208,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .photo-frame {
   position: relative;
-  width: clamp(176px, 25vw, 256px); aspect-ratio: 4 / 5;
+  width: clamp(211px, 30vw, 307px); aspect-ratio: 4 / 5;
   border-radius: 18px;
   border: 1px solid var(--line);
   background: var(--accent-bg);
@@ -223,7 +225,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .monogram {
   position: absolute; inset: 0;
   display: grid; place-items: center;
-  font-family: var(--serif); font-size: clamp(3.2rem, 7vw, 4.6rem);
+  font-family: var(--serif); font-size: clamp(3.2rem, 8.4vw, 4.6rem);
   font-weight: 500; color: var(--accent); letter-spacing: .02em;
 }
 
@@ -233,7 +235,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   position: relative; isolation: isolate;
   background: var(--alt);
   border-block: 1px solid var(--line);
-  padding: 68px 0 74px;
+  padding: 54px 0 59px;
   overflow: hidden;
 }
 
@@ -257,18 +259,18 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .journey-inner {
   display: flex; align-items: center; justify-content: center;
-  gap: clamp(16px, 4vw, 44px);
+  gap: clamp(13px, 3.2vw, 35px);
   flex-wrap: wrap;
 }
 
-.j-place { display: flex; align-items: center; gap: 14px; }
+.j-place { display: flex; align-items: center; gap: 11px; }
 
 /* Both flags are drawn to their official specifications, so they are sized by
    their own geometry rather than forced into a shared box — Nepal's pennant is
    taller than wide (1 : 1.219), the US flag is 1.9 : 1. */
 .flag { flex: none; filter: drop-shadow(0 1px 3px rgba(0,0,0,.22)); }
-.flag-np { height: 52px; width: auto; }
-.flag-us { width: 66px; height: auto; border: 1px solid var(--line); }
+.flag-np { height: 62px; width: auto; }
+.flag-us { width: 79px; height: auto; border: 1px solid var(--line); }
 
 .j-text { display: flex; flex-direction: column; line-height: 1.4; }
 .j-text strong {
@@ -296,7 +298,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 
 .j-arc { width: clamp(70px, 12vw, 160px); color: var(--accent); opacity: .55; }
-.j-arc svg { width: 100%; height: 46px; display: block; }
+.j-arc svg { width: 100%; height: 55px; display: block; }
 
 @media (max-width: 720px) {
   .journey-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
@@ -305,15 +307,15 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ───────────────────────── sections ───────────────────────── */
 
-.sec { padding: clamp(56px, 8vw, 92px) 0; }
+.sec { padding: clamp(45px, 6.4vw, 74px) 0; }
 .sec.alt { background: var(--alt); border-block: 1px solid var(--line); }
 
 .sec-title {
-  display: flex; align-items: baseline; gap: 16px;
+  display: flex; align-items: baseline; gap: 13px;
   font-family: var(--serif);
-  font-size: clamp(1.72rem, 3.6vw, 2.28rem);
+  font-size: clamp(1.72rem, 4.32vw, 2.28rem);
   font-weight: 500; letter-spacing: -.02em;
-  margin: 0 0 30px;
+  margin: 0 0 24px;
 }
 .sec-title .num {
   font-family: var(--sans);
@@ -322,7 +324,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 
 .sec-lede {
-  max-width: 68ch; margin: 0 0 38px;
+  max-width: 68ch; margin: 0 0 30px;
   font-size: 1.045rem; color: var(--ink-soft);
 }
 .sec-lede strong { color: var(--ink); }
@@ -330,12 +332,12 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 /* ───────────────────────── cards ───────────────────────── */
 
 .cards {
-  display: grid; gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(238px, 1fr));
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(286px, 1fr));
 }
 
 .card {
-  padding: 24px 22px;
+  padding: 19px 18px;
   background: var(--surface);
   border: 1px solid var(--line); border-radius: var(--r);
   transition: transform .2s, border-color .2s, box-shadow .2s;
@@ -344,10 +346,10 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .card-ico {
   display: grid; place-items: center;
-  width: 38px; height: 38px; margin-bottom: 15px;
+  width: 46px; height: 46px; margin-bottom: 12px;
   border-radius: 10px; background: var(--accent-bg); color: var(--accent);
 }
-.card-ico svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.card-ico svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 
 .card h3 { margin: 0 0 7px; font-size: 1.03rem; font-weight: 600; letter-spacing: -.011em; }
 .card p  { margin: 0; font-size: .92rem; color: var(--muted); line-height: 1.6; }
@@ -359,13 +361,13 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .pub {
   counter-increment: p;
   position: relative;
-  padding: 22px 0 22px 52px;
+  padding: 18px 0 18px 50px;
   border-bottom: 1px solid var(--line);
 }
 .pub:last-child { border-bottom: 0; }
 .pub::before {
   content: counter(p, decimal-leading-zero);
-  position: absolute; left: 0; top: 24px;
+  position: absolute; left: 0; top: 20px;
   font-size: .78rem; font-weight: 600; letter-spacing: .06em;
   color: var(--accent); font-variant-numeric: tabular-nums;
 }
@@ -381,7 +383,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .tag {
   display: inline-block; margin-left: 8px;
-  padding: 2px 9px; border-radius: 999px;
+  padding: 2px 11px; border-radius: 999px;
   font-size: .715rem; font-weight: 600; font-style: normal;
   letter-spacing: .03em; text-transform: uppercase;
   vertical-align: 1px;
@@ -393,7 +395,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
    Each group is its own list, and its items carry the CV's own labels (J1, C1,
    P1…) so the site and the PDF cite the same paper the same way. */
 .pub-group {
-  margin: 34px 0 2px;
+  margin: 27px 0 2px;
   font-size: .775rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
   color: var(--muted);
 }
@@ -406,9 +408,9 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .timeline { display: grid; gap: 4px; }
 
 .tl-item {
-  display: grid; grid-template-columns: 172px 1fr;
-  gap: 28px;
-  padding: 26px 0;
+  display: grid; grid-template-columns: 206px 1fr;
+  gap: 22px;
+  padding: 21px 0;
   border-top: 1px solid var(--line);
 }
 .tl-item:first-child { border-top: 0; padding-top: 4px; }
@@ -428,7 +430,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   font-family: var(--serif); font-size: 1.19rem; font-weight: 600;
   letter-spacing: -.014em; line-height: 1.3;
 }
-.tl-org { margin: 0 0 12px; font-size: .885rem; color: var(--muted); }
+.tl-org { margin: 0 0 10px; font-size: .885rem; color: var(--muted); }
 
 .tl-body ul { margin: 0; padding-left: 18px; }
 .tl-body li { margin-bottom: 6px; font-size: .935rem; color: var(--ink-soft); }
@@ -436,7 +438,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .tl-body > p { font-size: .935rem; color: var(--ink-soft); margin: 0; }
 
 .sub {
-  margin-top: 18px; padding-left: 18px;
+  margin-top: 14px; padding-left: 14px;
   border-left: 2px solid var(--line);
 }
 .sub h4 {
@@ -447,7 +449,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ───────────────────────── skills ───────────────────────── */
 
-.skills { display: grid; gap: 26px; }
+.skills { display: grid; gap: 21px; }
 
 .skill-group h3 {
   margin: 0 0 11px;
@@ -457,7 +459,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
 .chips li {
-  padding: 7px 14px;
+  padding: 8px 17px;
   background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
   font-size: .875rem; font-weight: 500; color: var(--ink-soft);
   transition: border-color .18s, color .18s;
@@ -466,11 +468,11 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ───────────────────────── reviews ───────────────────────── */
 
-.reviews { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+.reviews { display: grid; gap: 11px; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); }
 
 .rev {
-  display: flex; align-items: center; gap: 18px;
-  padding: 19px 22px;
+  display: flex; align-items: center; gap: 14px;
+  padding: 15px 18px;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
   transition: border-color .2s, transform .2s;
 }
@@ -480,7 +482,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   flex: none;
   font-family: var(--serif); font-size: 1.95rem; font-weight: 500;
   color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums;
-  min-width: 46px; text-align: center;
+  min-width: 55px; text-align: center;
 }
 .rev h3 { margin: 0 0 2px; font-size: .935rem; font-weight: 600; line-height: 1.34; letter-spacing: -.008em; }
 .rev p  { margin: 0; font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -492,7 +494,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .contact {
   position: relative; isolation: isolate; overflow: hidden;
   text-align: center;
-  padding-block: clamp(68px, 10vw, 112px);
+  padding-block: clamp(54px, 8vw, 90px);
 }
 
 /* One soft wash of accent behind the closing note, so the page resolves rather
@@ -506,7 +508,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 .contact-h {
   font-family: var(--serif);
-  font-size: clamp(2rem, 4.6vw, 2.85rem);
+  font-size: clamp(2rem, 5.52vw, 2.85rem);
   font-weight: 500; letter-spacing: -.024em; margin: 0 0 16px;
 }
 /* Short accent rule under the heading — a pseudo-element so the markup stays
@@ -517,21 +519,21 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   background: var(--accent); border-radius: 2px; opacity: .75;
 }
 
-.contact-p { max-width: 48ch; margin: 0 auto 34px; color: var(--muted); }
+.contact-p { max-width: 48ch; margin: 0 auto 27px; color: var(--muted); }
 
 /* Three across on a wide screen, collapsing to one on a phone. The cards were
    previously a narrow single-column stack because the KEC label plus its
    affiliation line could not sit *opposite* an address without wrapping badly.
    In a card each of those is its own line, so the constraint no longer binds. */
 .emails {
-  display: grid; gap: 14px;
-  grid-template-columns: repeat(auto-fit, minmax(252px, 1fr));
-  max-width: 940px; margin: 0 auto 32px;
+  display: grid; gap: 11px;
+  grid-template-columns: repeat(auto-fit, minmax(302px, 1fr));
+  max-width: 1128px; margin: 0 auto 26px;
 }
 .email {
   position: relative; overflow: hidden;
   display: flex; flex-direction: column; gap: 4px;
-  padding: 22px 22px 20px;
+  padding: 18px 18px 16px;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--r);
   text-align: left;
   transition: border-color .2s, transform .2s, box-shadow .2s;
@@ -551,11 +553,11 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .email:hover::before, .email:focus-visible::before { transform: scaleX(1); }
 
 .email-tag {
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center; gap: 10px;
   font-size: .695rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase;
   color: var(--muted);
 }
-.email-logo { width: 19px; height: 19px; flex: none; border-radius: 50%; }
+.email-logo { width: 23px; height: 23px; flex: none; border-radius: 50%; }
 .email-sub {
   font-size: .735rem; color: var(--muted); font-style: italic; opacity: .88;
 }
@@ -563,7 +565,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
    up across the row even though only one of them carries an affiliation line. */
 .email-addr {
   display: flex; align-items: center; gap: 6px;
-  margin-top: auto; padding-top: 12px;
+  margin-top: auto; padding-top: 10px;
   font-size: .9rem; font-weight: 500; color: var(--accent); word-break: break-word;
 }
 .email-addr::after {
@@ -574,16 +576,16 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .email:hover .email-addr::after,
 .email:focus-visible .email-addr::after { opacity: 1; transform: translateX(0); }
 
-.cv-note { margin: 30px 0 0; font-size: .84rem; color: var(--muted); font-style: italic; }
+.cv-note { margin: 24px 0 0; font-size: .84rem; color: var(--muted); font-style: italic; }
 
-.pub-more { margin: 26px 0 0; font-size: .9rem; color: var(--muted); }
+.pub-more { margin: 21px 0 0; font-size: .9rem; color: var(--muted); }
 
-.members { margin: 26px 0 0; font-size: .92rem; color: var(--ink-soft); }
+.members { margin: 21px 0 0; font-size: .92rem; color: var(--ink-soft); }
 .members strong { margin-right: 8px; color: var(--ink); font-weight: 600; }
 
 /* ───────────────────────── footer ───────────────────────── */
 
-.foot { border-top: 1px solid var(--line); padding: 26px 0; }
+.foot { border-top: 1px solid var(--line); padding: 21px 0; }
 .foot-inner {
   display: flex; justify-content: space-between; align-items: baseline;
   flex-wrap: wrap; gap: 6px 22px;
@@ -617,7 +619,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
   position: fixed; z-index: 40;
   right: clamp(16px, 3vw, 28px); bottom: clamp(16px, 3vw, 28px);
   display: grid; place-items: center;
-  width: 44px; height: 44px;
+  width: 53px; height: 53px;
   border: 1px solid var(--line); border-radius: 50%;
   background: var(--surface); color: var(--ink);
   box-shadow: var(--shadow);
@@ -631,7 +633,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 .totop:hover { transform: translateY(-2px); }
 .totop svg {
-  width: 17px; height: 17px;
+  width: 20px; height: 20px;
   fill: none; stroke: currentColor; stroke-width: 2;
   stroke-linecap: round; stroke-linejoin: round;
 }
@@ -656,12 +658,12 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 }
 
 @media (max-width: 520px) {
-  body { font-size: 16px; }
-  .wrap { padding-inline: 20px; }
+  body { font-size: 1rem; }
+  .wrap { padding-inline: 16px; }
   .pub { padding-left: 0; }
   .pub::before { position: static; display: block; margin-bottom: 6px; }
-  .rev { gap: 14px; padding: 16px 18px; }
-  .rev-n { font-size: 1.6rem; min-width: 38px; }
+  .rev { gap: 11px; padding: 13px 14px; }
+  .rev-n { font-size: 1.6rem; min-width: 46px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
